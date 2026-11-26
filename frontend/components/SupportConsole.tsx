@@ -237,7 +237,7 @@ const CAPABILITIES = [
 
 function Welcome({ onPick, voice }: { onPick: (t: string) => void; voice: boolean }) {
   return (
-    <div className="pt-4 sm:pt-10">
+    <div className="pt-2 sm:pt-4">
       <span className="rise inline-flex items-center gap-2 rounded-full border border-rule bg-surface/80 px-3 py-1 text-caption text-slate backdrop-blur">
         <ShieldIcon width={13} height={13} className="text-brand" />
         {voice ? "Chat or call" : "Chat"}, every answer checked against the help center
@@ -254,7 +254,7 @@ function Welcome({ onPick, voice }: { onPick: (t: string) => void; voice: boolea
         person.
       </p>
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">
         {SUGGESTIONS.slice(0, 4).map((s, i) => {
           const card = CARDS[i % CARDS.length];
           const Icon = card.icon;
@@ -280,7 +280,7 @@ function Welcome({ onPick, voice }: { onPick: (t: string) => void; voice: boolea
         })}
       </div>
 
-      <ul className="rise mt-8 flex flex-wrap gap-x-5 gap-y-2" style={{ animationDelay: "460ms" }}>
+      <ul className="rise mt-6 flex flex-wrap gap-x-5 gap-y-2" style={{ animationDelay: "460ms" }}>
         {CAPABILITIES.map(({ icon: Icon, label }) => (
           <li key={label} className="flex items-center gap-1.5 text-caption text-slate">
             <Icon width={14} height={14} className="text-brand" />
