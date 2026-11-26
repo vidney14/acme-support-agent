@@ -2,7 +2,7 @@
 
 A full-stack customer support agent that handles requests over **streaming chat** and **live voice**, chains tools autonomously (verify identity → check account → retrieve tier-specific policy → act), refuses to guess when its knowledge base doesn't cover a question, and shows its work in a real-time **observability drawer**.
 
-**Live demo:** `<your Vercel URL>` · **Walkthrough video:** `<your Loom URL>`
+**Live demo:** https://acme-support-agent.vercel.app · **API:** https://acme-support-agent-api.onrender.com/api/health · **Walkthrough video:** `<your Loom URL>`
 
 ![Chat with tool rail, confidence gauge, citations and traces](docs/screenshots/chat.png)
 

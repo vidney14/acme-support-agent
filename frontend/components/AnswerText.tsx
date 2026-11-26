@@ -25,7 +25,18 @@ export function AnswerText({
   streaming: boolean;
 }) {
   const order = citationOrder(text);
-  const blocks = text.split(/\n{2,}/);
+  // A paragraph followed directly by list lines ("To fix this:\n- a\n- b") becomes separate blocks,
+  // so the list still renders as a list when the model omits the blank line.
+  const LIST_LINE = /^\s*([-*]|\d+\.)\s+/;
+  const blocks = text.split(/\n{2,}/).flatMap((block) => {
+    const groups: string[][] = [];
+    for (const line of block.split("\n")) {
+      const last = groups[groups.length - 1];
+      if (last && LIST_LINE.test(last[0]) === LIST_LINE.test(line)) last.push(line);
+      else groups.push([line]);
+    }
+    return groups.map((g) => g.join("\n"));
+  });
 
   const inline = (s: string, key: string): ReactNode[] => {
     const out: ReactNode[] = [];
