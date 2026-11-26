@@ -1,0 +1,45 @@
+# Machine-readable policy rules enforced by the tool layer (app/tools/policy.py).
+#
+# The knowledge base (data/kb/*.md) is what the LLM *reads* to explain policy to the
+# customer. This file is what the code *enforces*. The LLM can never talk its way
+# past these numbers, because the refund tool checks them before acting.
+#
+# In production these would come from the billing system's config, and the KB
+# text would be generated from (or validated against) the same source.
+
+refunds:
+  # Max amount the AI agent may approve without a human, per refund.
+  automated_limit_usd:
+    free: 0
+    pro: 50
+    business: 200
+    enterprise: 0          # Enterprise refunds are never automated (MSA governs).
+
+  # Days after the charge date in which a refund may be requested.
+  window_days:
+    pro:      { monthly: 14, annual: 30 }
+    business: { monthly: 30, annual: 30 }
+
+  # At most one automated refund per account in this rolling window.
+  automated_frequency_days: 90
+
+  # Duplicate charges are refundable outside the normal window.
+  duplicate_charge_ignores_window: true
+
+escalation:
+  response_targets:
+    free:       { standard: "best effort, up to 5 business days", p1: "best effort" }
+    pro:        { standard: "48 hours", p1: "24 hours" }
+    business:   { standard: "24 hours", p1: "4 hours" }
+    enterprise: { standard: "per SLA severity (P2: 4 hours)", p1: "1 hour, 24/7" }
+
+account:
+  updatable_fields:
+    display_name:              { type: string, max_len: 80 }
+    phone:                     { type: phone }
+    preferred_contact_channel: { type: enum, values: [email, phone, chat] }
+    timezone:                  { type: timezone }
+    marketing_emails:          { type: bool }
+
+identity:
+  max_failed_attempts: 3

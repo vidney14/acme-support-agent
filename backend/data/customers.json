@@ -1,0 +1,179 @@
+{
+  "_comment": "Mock CRM + billing data. Dates are stored as days_ago / days_from_now and resolved at load time, so the demo scenarios work no matter when the app is run.",
+  "customers": [
+    {
+      "customer_id": "C-1001",
+      "email": "priya@example.com",
+      "support_pin": "4321",
+      "profile": {
+        "display_name": "Priya Shah",
+        "phone": "+1-617-555-0101",
+        "preferred_contact_channel": "email",
+        "timezone": "America/New_York",
+        "marketing_emails": true
+      },
+      "tier": "pro",
+      "billing_cycle": "monthly",
+      "seats": 1,
+      "contract_status": "active",
+      "outstanding_balance": 0,
+      "storage_used_gb": 412,
+      "account_created_days_ago": 540,
+      "invoices": [
+        {"invoice_id": "INV-20931", "amount": 12.0, "days_ago": 3, "status": "paid", "cycle": "monthly", "description": "Pro monthly"},
+        {"invoice_id": "INV-20932", "amount": 12.0, "days_ago": 3, "status": "paid", "cycle": "monthly", "description": "Pro monthly (second charge for the same period)", "duplicate_of": "INV-20931"},
+        {"invoice_id": "INV-20118", "amount": 12.0, "days_ago": 33, "status": "paid", "cycle": "monthly", "description": "Pro monthly"}
+      ],
+      "refunds": [],
+      "demo_scenario": "Duplicate charge: refund INV-20932 ($12) is within policy and auto-approved."
+    },
+    {
+      "customer_id": "C-1002",
+      "email": "marcus@example.com",
+      "support_pin": "8812",
+      "profile": {
+        "display_name": "Marcus Lee",
+        "phone": "+1-415-555-0144",
+        "preferred_contact_channel": "chat",
+        "timezone": "America/Los_Angeles",
+        "marketing_emails": false
+      },
+      "tier": "business",
+      "billing_cycle": "annual",
+      "seats": 10,
+      "contract_status": "active",
+      "outstanding_balance": 0,
+      "storage_used_gb": 18200,
+      "account_created_days_ago": 900,
+      "invoices": [
+        {"invoice_id": "INV-30410", "amount": 2400.0, "days_ago": 10, "status": "paid", "cycle": "annual", "description": "Business annual, 10 seats"},
+        {"invoice_id": "INV-30588", "amount": 40.0, "days_ago": 5, "status": "paid", "cycle": "monthly", "description": "Storage add-on 1 TB"}
+      ],
+      "refunds": [],
+      "demo_scenario": "Refund the $40 add-on: auto-approved. Refund the $2,400 annual invoice: above the $200 limit, so the agent escalates."
+    },
+    {
+      "customer_id": "C-1003",
+      "email": "elena@example.com",
+      "support_pin": "5590",
+      "profile": {
+        "display_name": "Elena Garcia",
+        "phone": "+34-91-555-0199",
+        "preferred_contact_channel": "phone",
+        "timezone": "Europe/Madrid",
+        "marketing_emails": false
+      },
+      "tier": "enterprise",
+      "billing_cycle": "annual",
+      "seats": 250,
+      "contract_status": "active",
+      "outstanding_balance": 0,
+      "storage_used_gb": 96000,
+      "account_created_days_ago": 1400,
+      "contract": {"term_months": 36, "renewal_days_from_now": 98, "account_manager": "Jordan Patel"},
+      "invoices": [
+        {"invoice_id": "INV-40021", "amount": 18000.0, "days_ago": 25, "status": "paid", "cycle": "annual", "description": "Enterprise annual contract fee"}
+      ],
+      "refunds": [],
+      "demo_scenario": "Enterprise: refunds are never automated, so they are routed to the account manager. Ask about SLA credits."
+    },
+    {
+      "customer_id": "C-1004",
+      "email": "tom@example.com",
+      "support_pin": "2468",
+      "profile": {
+        "display_name": "Tom Becker",
+        "phone": "+49-30-555-0123",
+        "preferred_contact_channel": "email",
+        "timezone": "Europe/Berlin",
+        "marketing_emails": true
+      },
+      "tier": "pro",
+      "billing_cycle": "monthly",
+      "seats": 1,
+      "contract_status": "past_due",
+      "outstanding_balance": 12.0,
+      "storage_used_gb": 88,
+      "account_created_days_ago": 210,
+      "invoices": [
+        {"invoice_id": "INV-21002", "amount": 12.0, "days_ago": 6, "status": "failed", "cycle": "monthly", "description": "Pro monthly (payment failed)"},
+        {"invoice_id": "INV-20877", "amount": 12.0, "days_ago": 9, "status": "paid", "cycle": "monthly", "description": "Pro monthly"}
+      ],
+      "refunds": [],
+      "demo_scenario": "Past due: the refund is blocked by policy until the balance is paid."
+    },
+    {
+      "customer_id": "C-1005",
+      "email": "aisha@example.com",
+      "support_pin": "1357",
+      "profile": {
+        "display_name": "Aisha Khan",
+        "phone": "+1-312-555-0177",
+        "preferred_contact_channel": "email",
+        "timezone": "America/Chicago",
+        "marketing_emails": false
+      },
+      "tier": "business",
+      "billing_cycle": "monthly",
+      "seats": 4,
+      "contract_status": "expired",
+      "expired_days_ago": 12,
+      "outstanding_balance": 0,
+      "storage_used_gb": 1300,
+      "account_created_days_ago": 700,
+      "invoices": [
+        {"invoice_id": "INV-31877", "amount": 100.0, "days_ago": 42, "status": "paid", "cycle": "monthly", "description": "Business monthly, 4 seats"}
+      ],
+      "refunds": [],
+      "demo_scenario": "Expired subscription: 'why can't I upload?' The agent explains read-only mode and reactivation."
+    },
+    {
+      "customer_id": "C-1006",
+      "email": "sam@example.com",
+      "support_pin": "9000",
+      "profile": {
+        "display_name": "Sam Rivera",
+        "phone": "+1-206-555-0110",
+        "preferred_contact_channel": "chat",
+        "timezone": "America/Los_Angeles",
+        "marketing_emails": true
+      },
+      "tier": "free",
+      "billing_cycle": null,
+      "seats": 1,
+      "contract_status": "active",
+      "outstanding_balance": 0,
+      "storage_used_gb": 4.9,
+      "account_created_days_ago": 60,
+      "invoices": [],
+      "refunds": [],
+      "demo_scenario": "Free plan: sync error E-2001 (storage full). Troubleshooting without billing."
+    },
+    {
+      "customer_id": "C-1007",
+      "email": "wei@example.com",
+      "support_pin": "7070",
+      "profile": {
+        "display_name": "Wei Chen",
+        "phone": "+1-646-555-0168",
+        "preferred_contact_channel": "email",
+        "timezone": "America/New_York",
+        "marketing_emails": false
+      },
+      "tier": "pro",
+      "billing_cycle": "annual",
+      "seats": 1,
+      "contract_status": "active",
+      "outstanding_balance": 0,
+      "storage_used_gb": 230,
+      "account_created_days_ago": 400,
+      "invoices": [
+        {"invoice_id": "INV-20750", "amount": 120.0, "days_ago": 20, "status": "paid", "cycle": "annual", "description": "Pro annual"}
+      ],
+      "refunds": [
+        {"refund_id": "RF-10077", "invoice_id": "INV-19902", "amount": 12.0, "days_ago": 40, "approved_by": "automated"}
+      ],
+      "demo_scenario": "Annual refund: inside the 30-day window but above the $50 limit, and already one automated refund in the last 90 days. The agent escalates."
+    }
+  ]
+}

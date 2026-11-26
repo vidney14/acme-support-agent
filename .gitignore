@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/.qdrant/
+# Node
+node_modules/
+.next/
+out/
+# Env
+.env
+.env.local
+*.log
+.DS_Store
+!.env.example

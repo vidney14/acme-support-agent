@@ -1,0 +1,23 @@
+# Render Blueprint: deploys the FastAPI backend (agent, RAG, voice bridge) as one Docker service.
+# The Next.js frontend deploys separately on Vercel (see README).
+services:
+  - type: web
+    name: acme-support-agent-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false          # paste your key when creating the Blueprint
+      - key: CORS_ORIGINS
+        sync: false          # your Vercel URL, e.g. https://acme-support.vercel.app
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: ENABLE_FAULT_INJECTION
+        value: "true"        # keeps the demo's "Simulate failures" panel working
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "12"
