@@ -5,8 +5,9 @@ services:
     name: acme-support-agent-api
     runtime: docker
     rootDir: backend
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    # Both paths are relative to rootDir (Render resolves them inside backend/).
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     plan: free
     region: oregon
     healthCheckPath: /api/health
@@ -14,7 +15,7 @@ services:
       - key: GEMINI_API_KEY
         sync: false          # paste your key when creating the Blueprint
       - key: CORS_ORIGINS
-        sync: false          # your Vercel URL, e.g. https://acme-support.vercel.app
+        value: https://acme-support-agent.vercel.app
       - key: LLM_PROVIDER
         value: gemini
       - key: ENABLE_FAULT_INJECTION
