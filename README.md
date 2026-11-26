@@ -1,8 +1,17 @@
 # AcmeCloud Support Agent
 
-A full-stack customer support agent that handles requests over **streaming chat** and **live voice**, chains tools autonomously (verify identity → check account → retrieve tier-specific policy → act), refuses to guess when its knowledge base doesn't cover a question, and shows its work in a real-time **observability drawer**.
+| | |
+|---|---|
+| 🎥 **Walkthrough video (Loom)** | https://www.loom.com/share/96bc8acd45374abeb7b2eb19fc1172be |
+| 🌐 **Live demo** | https://acme-support-agent.vercel.app |
+| ⚙️ **API health check** | https://acme-support-agent-api.onrender.com/api/health |
+| 💻 **Source code** | https://github.com/vidney14/acme-support-agent |
 
-**Live demo:** https://acme-support-agent.vercel.app · **API:** https://acme-support-agent-api.onrender.com/api/health · **Walkthrough video:** `<your Loom URL>`
+> The API runs on Render's free tier and sleeps after 15 idle minutes. If the first message is slow, wait about a minute for it to wake up.
+>
+> **Test account:** `priya@example.com` / PIN `4321`. More accounts are listed in the in-app **Demo guide**.
+
+A full-stack customer support agent that handles requests over **streaming chat** and **live voice**, chains tools autonomously (verify identity → check account → retrieve tier-specific policy → act), refuses to guess when its knowledge base doesn't cover a question, and shows its work in a real-time **observability drawer**.
 
 ![Chat with tool rail, confidence gauge, citations and traces](docs/screenshots/chat.png)
 
