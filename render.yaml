@@ -18,6 +18,11 @@ services:
         value: https://acme-support-agent.vercel.app
       - key: LLM_PROVIDER
         value: gemini
+      # Flash-Lite answers in ~1-2s; switch to gemini-3.8-flash / low when it isn't overloaded.
+      - key: CHAT_MODEL
+        value: gemini-3.5-flash-lite
+      - key: CHAT_THINKING_LEVEL
+        value: minimal
       - key: ENABLE_FAULT_INJECTION
         value: "true"        # keeps the demo's "Simulate failures" panel working
       - key: RATE_LIMIT_PER_MINUTE
